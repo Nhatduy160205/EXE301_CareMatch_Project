@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* CareMatch Logo Animations & Layer Styling from carematch-intro.html */
+.carematch-logo {
+  position: relative;
+  width: min(72vw, 360px);
+  aspect-ratio: 1.1389;
+}
+
+.carematch-ly {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.carematch-glow {
+  position: absolute;
+  left: 5%;
+  top: 0%;
+  width: 90%;
+  height: 78%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143,224,230,0.8) 0%, rgba(143,224,230,0) 68%);
+  opacity: 0;
+  z-index: 0;
+}
+
+/* Layer specific position & scale */
+#cm-layer-heart {
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 75%;
+  object-fit: contain;
+}
+
+#cm-layer-elder {
+  top: 20%;
+  left: 44%;
+  width: 12%;
+  height: 26%;
+  object-fit: contain;
+}
+
+#cm-layer-hands {
+  top: 39%;
+  left: 27.5%;
+  width: 45%;
+  height: 22%;
+  object-fit: contain;
+}
+
+.carematch-text-container {
+  position: absolute;
+  top: 74%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.08em;
+  font-family: 'Be Vietnam Pro', 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.75rem, 4.5vw, 2.7rem);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Layer initial states & animations */
+.cm-heart {
+  clip-path: circle(0% at 50% 76%);
+  animation: bloom 1.55s cubic-bezier(.6,0,.25,1) .15s forwards;
+}
+
+.cm-glow {
+  animation: halo 2.4s ease-out .8s forwards;
+}
+
+.cm-hands {
+  opacity: 0;
+  animation: lift .95s cubic-bezier(.22,1,.3,1) 1.05s forwards;
+}
+
+.cm-elder {
+  opacity: 0;
+  animation: rise .85s cubic-bezier(.22,1,.3,1) 1.45s forwards;
+}
+
+.cm-text-care {
+  color: #1FB3BF;
+  clip-path: inset(0 100% 0 0);
+  animation: wipe .75s cubic-bezier(.5,0,.2,1) 1.95s forwards;
+}
+
+.cm-text-match {
+  color: #1155C4;
+  clip-path: inset(0 100% 0 0);
+  animation: wipe .75s cubic-bezier(.5,0,.2,1) 2.25s forwards;
+}
+
+.cm-float {
+  animation: float 7s ease-in-out 3s infinite;
+}
+
+@keyframes bloom {
+  0% { clip-path: circle(0% at 50% 76%); opacity: 0.6; }
+  100% { clip-path: circle(85% at 50% 76%); opacity: 1; }
+}
+
+@keyframes halo {
+  0% { opacity: 0; transform: scale(0.85); }
+  45% { opacity: 0.6; }
+  100% { opacity: 0.35; transform: scale(1); }
+}
+
+@keyframes lift {
+  from { opacity: 0; transform: translateY(46px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 -2% 0 0); }
+}
+
+@keyframes soft {
+  to { opacity: 1; }
+}
+
+@keyframes pop {
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(3vw,4vh,0) scale(1.12); }
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+
