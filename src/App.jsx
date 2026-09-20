@@ -73,7 +73,7 @@ export default function App() {
       {/* Footer */}
       <footer class="bg-slate-950 text-slate-500 text-xs py-8 border-t border-slate-800 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-          <p>© 2026 ElderCare Startup Project - Bộ môn Khởi nghiệp EXE301.</p>
+          <p>© 2026 CareMatch Startup Project - Bộ môn Khởi nghiệp EXE1.</p>
           <p>Xây dựng hoàn chỉnh bằng ReactJS + Vite + Tailwind CSS + Lucide Icons.</p>
         </div>
       </footer>

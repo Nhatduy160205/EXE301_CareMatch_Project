@@ -40,7 +40,7 @@ export default function IntroView({ setView, setRole }) {
           {/* Badge */}
           <div class="inline-flex items-center gap-2 bg-teal-950/80 border border-teal-700/60 px-4 py-1.5 rounded-full text-teal-300 text-xs font-bold tracking-wide uppercase shadow-inner mb-6">
             <Sparkles class="w-4 h-4 text-teal-400 animate-pulse" />
-            <span>CareMatch — Đề Án Khởi Nghiệp Y Tế EXE301</span>
+            <span>CareMatch — Đề Án Khởi Nghiệp Y Tế EXE1</span>
           </div>
 
           {/* Animated 5-Layer Code Logo Container */}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Home, UserCheck, Stethoscope, ShieldCheck } from 'lucide-react';
+import { Home, UserCheck, Stethoscope, ShieldCheck, HeartPulse } from 'lucide-react';
+import logoIcon from '../assets/logo-icon.png';
 
 export default function Navbar({ currentView, setView, activeRole, setRole }) {
   return (
@@ -7,17 +8,18 @@ export default function Navbar({ currentView, setView, activeRole, setRole }) {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Brand logo & return button */}
         <div class="flex items-center gap-3">
-          <img 
-            src="/logo(exe).jpg" 
-            alt="ElderCare Logo" 
-            class="h-11 w-11 rounded-xl object-cover border-2 border-teal-500 shadow-md"
-            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=120'; }}
-          />
+          <div class="h-12 w-12 rounded-2xl bg-slate-950 border-2 border-teal-500 overflow-hidden shadow-md shadow-teal-500/20 shrink-0 flex items-center justify-center p-1">
+            <img 
+              src={logoIcon} 
+              alt="CareMatch Logo" 
+              class="w-full h-full object-contain"
+            />
+          </div>
           <div>
             <div class="font-extrabold text-xl tracking-tight text-white flex items-center gap-2">
-              <span>Elder<span class="text-teal-400">Care</span></span>
+              <span>Care<span class="text-teal-400">Match</span></span>
               <span class="text-[10px] bg-teal-500/20 text-teal-300 font-semibold px-2.5 py-0.5 rounded-full border border-teal-500/30">
-                EXE301 React MVP
+                EXE1 React MVP
               </span>
             </div>
             <p class="text-[11px] text-slate-400">Nền tảng Hộ lý & Bữa ăn Dinh dưỡng</p>

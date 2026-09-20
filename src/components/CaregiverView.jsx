@@ -333,13 +333,15 @@ export default function CaregiverView({ state, setState, showToast, formatVND })
                       <p class="text-xs text-slate-600">👤 Người đặt: {selectedJob.buyerName}</p>
                     </div>
 
-                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200 space-y-2">
-                      <div class="text-xs font-bold text-amber-900 uppercase flex items-center gap-1.5">
-                        <AlertCircle class="w-4 h-4 text-amber-600" />
-                        <span>Tình trạng Bệnh nền & Yêu cầu</span>
+                    <div class="bg-teal-50/70 p-4 rounded-2xl border border-teal-200 space-y-2">
+                      <div class="text-xs font-bold text-teal-950 uppercase flex items-center justify-between">
+                        <span class="flex items-center gap-1.5"><FileText class="w-4 h-4 text-teal-600" /> Y bạ Điện tử (Medical Vault)</span>
+                        <span class="text-[9px] bg-teal-200 text-teal-900 px-2 py-0.5 rounded-full font-bold">Bắt buộc đọc</span>
                       </div>
-                      <p class="text-xs font-semibold text-slate-800">{selectedJob.conditions}</p>
-                      <p class="text-xs text-amber-900">🍲 Menu: <strong>{selectedJob.mealType}</strong></p>
+                      <p class="text-xs font-semibold text-slate-800">📋 <strong>Bệnh nền:</strong> {selectedJob.conditions}</p>
+                      <p class="text-xs text-slate-700">🩺 <strong>Toa thuốc:</strong> Amlodipine 5mg (1 viên/14:00)</p>
+                      <p class="text-xs text-slate-700">⚠️ <strong>Dị ứng:</strong> Dị ứng hải sản vỏ cứng (Tôm, cua)</p>
+                      <p class="text-xs text-slate-700">❤️ <strong>Sở thích:</strong> Thích nghe nhạc tiền chiến & đánh cờ</p>
                     </div>
                   </div>
 
@@ -475,11 +477,25 @@ export default function CaregiverView({ state, setState, showToast, formatVND })
                   </button>
                 </div>
 
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs">
-                  <div class="font-bold text-slate-800">Yêu cầu & Ghi chú từ người nhà:</div>
-                  <p class="text-slate-600">🩺 {currentWorkShift.conditions}</p>
-                  <p class="text-slate-600">🍲 {currentWorkShift.mealType}</p>
-                  <p class="text-slate-600 italic">"{currentWorkShift.specialNotes}"</p>
+                <div class="bg-teal-50/60 p-4 rounded-2xl border border-teal-200 space-y-2 text-xs">
+                  <div class="font-bold text-teal-950 flex items-center justify-between border-b border-teal-200/60 pb-2">
+                    <span class="flex items-center gap-1.5">
+                      <FileText class="w-4 h-4 text-teal-600" />
+                      <span>Y bạ Điện tử & Thông tin Người cần chăm sóc</span>
+                    </span>
+                    <span class="text-[10px] bg-teal-200 text-teal-900 px-2 py-0.5 rounded-full font-bold">Bắt buộc Hộ lý đọc</span>
+                  </div>
+                  <div class="space-y-1.5 text-slate-700 pt-1 leading-relaxed">
+                    <p>👴 <strong>Bệnh nhân:</strong> <strong class="text-slate-900">{currentWorkShift.seniorName} ({currentWorkShift.seniorAge} tuổi)</strong></p>
+                    <p>📋 <strong>Bệnh nền:</strong> {currentWorkShift.conditions}</p>
+                    <p>🩺 <strong>Toa thuốc chỉ định:</strong> Amlodipine 5mg (1 viên/14:00)</p>
+                    <p>⚠️ <strong>Dị ứng đặc biệt:</strong> Dị ứng hải sản vỏ cứng (Tôm, cua)</p>
+                    <p>❤️ <strong>Sở thích & Tâm lý:</strong> Thích nghe nhạc tiền chiến & đánh cờ tướng</p>
+                    <p>🍲 <strong>Thực đơn:</strong> {currentWorkShift.mealType}</p>
+                    <div class="p-2.5 bg-white rounded-xl border border-teal-200 text-slate-700 italic">
+                      💡 <strong>Dặn dò từ gia đình:</strong> "{currentWorkShift.specialNotes}"
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

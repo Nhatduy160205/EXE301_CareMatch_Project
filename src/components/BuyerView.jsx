@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   CalendarPlus, QrCode, CheckCircle2, Clock, HeartPulse, 
   AlertTriangle, Check, ShieldAlert, Sparkles, Mic, Volume2, 
-  MapPin, Utensils, Play, Square, Activity, FileText, Camera, Calendar, ShoppingBag
+  MapPin, Utensils, Play, Square, Activity, FileText, Camera, Calendar, ShoppingBag, X, ChevronRight, User, AlertCircle
 } from 'lucide-react';
 
 export default function BuyerView({ state, setState, showToast, formatVND }) {
@@ -13,6 +13,7 @@ export default function BuyerView({ state, setState, showToast, formatVND }) {
   const [bookingDate, setBookingDate] = useState('20/09/2026');
   const [timeSlot, setTimeSlot] = useState('Ca chiều (13:00 - 17:00)');
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [showMedicalVaultModal, setShowMedicalVaultModal] = useState(false);
 
   // Helper to convert "DD/MM/YYYY" -> "YYYY-MM-DD" for HTML5 Date Input
   const dateToIso = (dStr) => {
@@ -148,20 +149,43 @@ export default function BuyerView({ state, setState, showToast, formatVND }) {
 
       {/* TÍNH NĂNG MỚI: MEDICAL VAULT & AI WEEKLY INSIGHTS & CROSS-SELLING BANNER */}
       <div class="grid md:grid-cols-3 gap-6">
-        {/* 1. Medical Vault */}
-        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <FileText class="w-4 h-4 text-teal-600" />
-              <h3 class="font-bold text-slate-900 text-sm">Y bạ Điện tử (Medical Vault)</h3>
+        {/* 1. Medical Vault (Compact Card with Clickable Modal) */}
+        <div 
+          onClick={() => setShowMedicalVaultModal(true)}
+          class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition cursor-pointer space-y-3 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div class="flex items-center gap-2">
+                <FileText class="w-4 h-4 text-teal-600" />
+                <h3 class="font-bold text-slate-900 text-sm">Y bạ Điện tử (Medical Vault)</h3>
+              </div>
+              <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-bold">Bắt buộc Hộ lý đọc</span>
             </div>
-            <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-bold">Bắt buộc Hộ lý đọc</span>
+
+            <div class="p-3 bg-teal-50/70 rounded-2xl border border-teal-100 space-y-1">
+              <div class="text-[11px] text-teal-800 font-semibold">Người cần chăm sóc:</div>
+              <div class="font-extrabold text-slate-900 text-sm">Cụ Nguyễn Văn An (76 tuổi)</div>
+              <div class="text-[11px] text-slate-600 flex items-center gap-2 pt-1 font-medium">
+                <span>🩺 1 Toa thuốc</span>
+                <span>•</span>
+                <span class="text-amber-700 font-semibold">⚠️ Dị ứng Tôm cua</span>
+              </div>
+            </div>
           </div>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            🩺 <strong>Toa thuốc:</strong> Amlodipine 5mg (1 viên/14:00).<br/>
-            ⚠️ <strong>Dị ứng:</strong> Dị ứng hải sản vỏ cứng (Tôm, cua).<br/>
-            ❤️ <strong>Sở thích:</strong> Thích nghe nhạc tiền chiến & đánh cờ.
-          </p>
+
+          <button 
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowMedicalVaultModal(true);
+            }}
+            class="w-full bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs py-2.5 rounded-xl border border-teal-200 transition flex items-center justify-center gap-1.5 shadow-sm"
+          >
+            <FileText class="w-3.5 h-3.5" />
+            <span>Click Xem Y Bạ Chi Tiết</span>
+            <ChevronRight class="w-4 h-4 text-teal-600" />
+          </button>
         </div>
 
         {/* 2. AI Weekly Insights */}
@@ -636,6 +660,103 @@ export default function BuyerView({ state, setState, showToast, formatVND }) {
           </div>
         </div>
       </div>
+
+      {/* MEDICAL VAULT POPUP MODAL */}
+      {showMedicalVaultModal && (
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div class="bg-white max-w-lg w-full rounded-3xl shadow-2xl border border-slate-100 p-6 space-y-5 relative overflow-hidden">
+            {/* Modal Header */}
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-teal-100 flex items-center justify-center text-teal-700 font-bold shrink-0">
+                  <FileText class="w-5 h-5" />
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="font-extrabold text-slate-900 text-base">Y bạ Điện tử (Medical Vault)</h3>
+                    <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-bold">
+                      Bắt buộc Hộ lý đọc
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-500">Hồ sơ sức khỏe & dặn dò y tế cho người chăm sóc</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowMedicalVaultModal(false)}
+                class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition"
+              >
+                <X class="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Senior Patient Profile Details */}
+            <div class="space-y-3.5 text-xs text-slate-700 max-h-[65vh] overflow-y-auto pr-1">
+              <div class="p-3.5 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl border border-teal-200 flex items-center justify-between">
+                <div>
+                  <div class="text-[11px] text-teal-800 font-semibold uppercase tracking-wider">Thông tin Người cần chăm sóc</div>
+                  <div class="text-base font-extrabold text-slate-900 mt-0.5">Cụ Nguyễn Văn An</div>
+                  <div class="text-xs text-slate-600 mt-0.5">76 tuổi • Giới tính: Nam • Phòng 1204 Vinhomes Central Park</div>
+                </div>
+                <div class="w-11 h-11 rounded-2xl bg-teal-600 text-white font-extrabold flex items-center justify-center text-sm shadow">
+                  76t
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <div class="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+                  <span>📋</span> Tình trạng Sức khỏe & Bệnh nền
+                </div>
+                <p class="text-slate-600 pl-5 leading-relaxed">Cao huyết áp nhẹ, Tiểu đường Tuýp 2, khớp chân hơi yếu khi di chuyển xa.</p>
+              </div>
+
+              <div class="p-3 bg-blue-50/80 rounded-xl border border-blue-200 space-y-1">
+                <div class="font-bold text-blue-950 flex items-center gap-1.5 text-xs">
+                  <span>🩺</span> Toa thuốc Chỉ định
+                </div>
+                <p class="text-blue-900 font-medium pl-5">• <strong>Amlodipine 5mg:</strong> 1 viên lúc 14:00 (Uống sau bữa trưa nhẹ)</p>
+                <p class="text-blue-900 font-medium pl-5">• <strong>Metformin 500mg:</strong> 1 viên sau ăn sáng</p>
+              </div>
+
+              <div class="p-3 bg-amber-50/90 rounded-xl border border-amber-200 space-y-1">
+                <div class="font-bold text-amber-950 flex items-center gap-1.5 text-xs">
+                  <span>⚠️</span> Dị ứng Đặc biệt (Cần tuyệt đối tránh)
+                </div>
+                <p class="text-amber-900 font-semibold pl-5">• Dị ứng hải sản vỏ cứng (Tôm, cua - gây dị ứng ngứa & sưng nhẹ)</p>
+              </div>
+
+              <div class="p-3 bg-rose-50/70 rounded-xl border border-rose-200 space-y-1">
+                <div class="font-bold text-rose-950 flex items-center gap-1.5 text-xs">
+                  <span>❤️</span> Sở thích & Tâm lý
+                </div>
+                <p class="text-rose-900 pl-5">• Thích nghe nhạc tiền chiến, trò chuyện nhẹ nhàng bằng giọng Nam.</p>
+                <p class="text-rose-900 pl-5">• Thích đánh cờ tướng cữ chiều sau khi dùng bữa.</p>
+              </div>
+
+              <div class="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-1.5">
+                <div class="font-extrabold text-emerald-950 flex items-center gap-1.5 text-xs">
+                  <span>💡</span> Dặn dò Lưu ý cho Hộ lý (Bắt buộc tuân thủ)
+                </div>
+                <ul class="list-disc list-inside text-emerald-900 space-y-1 pl-1 leading-relaxed">
+                  <li>Đo huyết áp và ghi nhận sinh hiệu trước khi nhắc cụ uống thuốc lúc 14:00.</li>
+                  <li>Khuyến nghị nhắc cụ uống đủ 1.5L nước ấm trong suốt ca trực.</li>
+                  <li>Dìu cụ cẩn thận khi di chuyển quanh hành lang hoặc vào nhà vệ sinh.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-end">
+              <button 
+                type="button"
+                onClick={() => setShowMedicalVaultModal(false)}
+                class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow transition"
+              >
+                Đã Đọc & Đóng Hồ Sơ
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
